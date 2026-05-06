@@ -19,5 +19,5 @@ EXPOSE 8080
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
-# Run Le-Phrog proxy application
-CMD ["mitmproxy"]
+# Run Le-Phrog proxy application in headless mode
+CMD ["mitmdump", "-p", "8080"]
