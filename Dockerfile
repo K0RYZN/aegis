@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 COPY . /app
 
 # Install Python dependencies
-RUN pip install --no-cache-dir mitmproxy
+RUN pip install --no-cache-dir mitmproxy colorama
 
 # Expose proxy port (default MITMPROXY port)
 EXPOSE 8080
@@ -19,5 +19,5 @@ EXPOSE 8080
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
-# Run Le-Phrog proxy application in headless mode
-CMD ["mitmdump", "-p", "8080"]
+# Run Le-Phrog proxy with Main.py addons script
+CMD ["mitmdump", "-p", "8080", "-s", "Main.py"]
