@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
 # Copy project files
 COPY . /app
 
-# Install Python dependencies
-RUN pip install --no-cache-dir mitmproxy colorama
+# Install Python dependencies from requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose proxy port (default MITMPROXY port)
 EXPOSE 8080
@@ -20,4 +20,5 @@ EXPOSE 8080
 ENV PYTHONUNBUFFERED=1
 
 # Run Le-Phrog proxy with Main.py addons script
+# Main.py contains: Loader, Blacklister, Agents (User-Agent rotation), BlockJS (JavaScript blocker)
 CMD ["mitmdump", "-p", "8080", "-s", "Main.py"]
