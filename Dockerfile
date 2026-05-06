@@ -19,5 +19,5 @@ EXPOSE 8080
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
-# Run the application
+# Run Le-Phrog proxy application
 CMD ["mitmproxy"]
