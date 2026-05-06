@@ -25,4 +25,5 @@ CMD ["mitmdump", \
      "--listen-host", "0.0.0.0", \
      "--listen-port", "8080", \
      "--mode", "regular", \
-     "--ssl-insecure"]
+     "--ssl-insecure", \
+     "-s", "Main.py"]
