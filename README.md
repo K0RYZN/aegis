@@ -42,3 +42,4 @@ docker run --rm -it \
   -v mitmproxy-certs:/home/mitmproxy/.mitmproxy \
   le-phrog
 ```
+after you run it, it should work perfetly fine. Howver, if you want HTTPS support you will need to do a few extra simple steps.
