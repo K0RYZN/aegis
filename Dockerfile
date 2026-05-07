@@ -1,10 +1,14 @@
-FROM python:3.11-slim
+FROM mitmproxy/mitmproxy:latest
 
-RUN pip install --no-cache-dir mitmproxy
+WORKDIR /addons
+
+COPY . /addons
 
 EXPOSE 8080
 
 CMD ["mitmdump", \
      "--listen-host", "0.0.0.0", \
      "--listen-port", "8080", \
-     "--mode", "regular"]
+     "--mode", "regular", \
+     "--set", "block_global=false", \
+     "-s", "/addons/Main.py"]
