@@ -2,6 +2,9 @@ FROM mitmproxy/mitmproxy:latest
 
 WORKDIR /addons
 
+COPY requirements.txt /addons/requirements.txt
+RUN pip install --no-cache-dir -r /addons/requirements.txt
+
 COPY . /addons
 
 EXPOSE 8080
