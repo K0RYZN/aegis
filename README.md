@@ -28,19 +28,19 @@ You need:
 Clone the repository:
 
 ```bash
-git clone https://github.com/M0usetrap777/Mothman.git
-cd Mothman
+git clone https://github.com/M0usetrap777/mothman.git
+cd mothman
 ```
 Build the Docker image
 ```bash
-docker build -t Mothman .
+docker build -t mothman .
 ```
-Run Mothman
+Run mothman
 ```bash
 docker run --rm -it \
   -p 8080:8080 \
   -v mitmproxy-certs:/home/mitmproxy/.mitmproxy \
-  Mothman
+  mothman
 ```
 after you run it, it should work perfetly fine. Howver, if you want HTTPS support you will need to do a few extra simple steps.
 
