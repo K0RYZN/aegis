@@ -1,10 +1,10 @@
-# Le-Phrog
+# Mothman
 
-Le-Phrog is a intercepting forward proxy that uses MITMPROXY as its engine
+Mothman is a intercepting forward proxy that uses MITMPROXY as its engine
 
 ## What It Does
 
-Le-Phrog acts as an HTTP/HTTPS intercepting proxy.
+Mothman acts as an HTTP/HTTPS intercepting proxy.
 <img width="1692" height="930" alt="ChatGPT Image May 5, 2026, 05_32_35 PM" src="https://github.com/user-attachments/assets/e544b8b1-a678-428f-980f-8f5b42951c3a" />
 Current addon stack:
 
@@ -28,18 +28,22 @@ You need:
 Clone the repository:
 
 ```bash
-git clone https://github.com/M0usetrap777/Le-Phrog.git
-cd Le-Phrog
+git clone https://github.com/M0usetrap777/Mothman.git
+cd Mothman
 ```
 Build the Docker image
 ```bash
-docker build -t le-phrog .
+docker build -t Mothman .
 ```
-Run Le-Phrog
+Run Mothman
 ```bash
 docker run --rm -it \
   -p 8080:8080 \
   -v mitmproxy-certs:/home/mitmproxy/.mitmproxy \
-  le-phrog
+  Mothman
 ```
 after you run it, it should work perfetly fine. Howver, if you want HTTPS support you will need to do a few extra simple steps.
+
+Go to http://mitm.it/ while the proxy is on and get the certifcates required to run HTTPS. There should be a "show intructions" button, follow it. It will add that certificate in your browsers system.
+
+After that restart Mothman and everything should work! 
