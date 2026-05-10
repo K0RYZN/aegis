@@ -1,5 +1,5 @@
 # Mothman
-<img width="635" height="651" alt="Screenshot From 2026-05-09 21-36-53" src="https://github.com/user-attachments/assets/1894da43-02c0-4792-a19e-07270c5a4475" />
+<img width="555" height="651" alt="Logo" src="https://github.com/user-attachments/assets/60e975ca-3ed8-45c9-8889-d16f1ca79c3f" />
 
 Mothman is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
 
@@ -55,6 +55,7 @@ BLOCKED BY THE MOTHMAN
 ## Session Stats
 
 When Mothman shuts down, it prints a session summary showing what happened while the proxy was running:
+
 <img width="1029" height="325" alt="Stats" src="https://github.com/user-attachments/assets/8404e175-eb96-4c28-a5f4-57a479811e76" />
 
 ---
