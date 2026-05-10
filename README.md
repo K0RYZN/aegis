@@ -1,4 +1,5 @@
 # Mothman
+<img width="635" height="651" alt="Screenshot From 2026-05-09 21-36-53" src="https://github.com/user-attachments/assets/1894da43-02c0-4792-a19e-07270c5a4475" />
 
 Mothman is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
 
@@ -54,24 +55,8 @@ BLOCKED BY THE MOTHMAN
 ## Session Stats
 
 When Mothman shuts down, it prints a session summary showing what happened while the proxy was running:
+<img width="1029" height="325" alt="Stats" src="https://github.com/user-attachments/assets/8404e175-eb96-4c28-a5f4-57a479811e76" />
 
-```
-THE MOTHMAN is INACTIVE
-
-MOTHMAN STATS
-Uptime: 00:22:41
-Total Requests Seen: 842
-Blocked Requests: 76
-Allowed Requests: 766
-Block Rate: 9.03%
-
-Top Blocked Domains:
-  google-analytics.com - 18
-  stats.g.doubleclick.net - 15
-  pagead2.googlesyndication.com - 11
-  analytics.tiktok.com - 7
-  bat.bing.com - 5
-```
 ---
 
 ## Requirements
