@@ -1,30 +1,11 @@
-"""
-Mothman domain blocklist.
+# Mothman currently supports domain-based blocking only.
+# Do not paste raw EasyList/uBlock rules here.
+# Unsupported examples:
+#   ||doubleclick.net^
+#   @@||example.com^
+#   example.com##.ad-banner
+#   /ads/banner/*
 
-This file contains manually curated domain-based blocking rules for ads,
-trackers, analytics, telemetry, and known advertising infrastructure.
-
-Mothman performs host-based matching only:
-- exact domain match
-- subdomain match
-
-Example:
-    doubleclick.net blocks:
-        doubleclick.net
-        stats.g.doubleclick.net
-
-    doubleclick.net does NOT block:
-        doubleclick.net.evil.com
-        notdoubleclick.net
-
-Sources used for research/reference:
-- EasyList
-- EasyPrivacy
-- AdGuard Tracking Protection Filter
-- uBlock Origin default filter ecosystem
-- DuckDuckGo Tracker Radar
-- manual traffic inspection while testing Mothman
-"""
 
 GOOGLE_AD_TRACKING = [
     "doubleclick.net",
