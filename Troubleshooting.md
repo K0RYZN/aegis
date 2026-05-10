@@ -19,3 +19,28 @@ Mothman uses:
 in the Dockerfile to allow these Docker-networked client connections.
 
 Only run Mothman on a trusted local machine. Do not expose port 8080 publicly.
+
+---
+# http://mitm.it does not load
+
+Make sure Mothman is running and your browser is configured to use the proxy.
+
+Firefox example:
+```
+HTTP Proxy: 127.0.0.1
+Port: 8080
+
+HTTPS Proxy: 127.0.0.1
+Port: 8080
+```
+Leave SOCKS settings empty unless you are intentionally using SOCKS.
+
+Also make sure you visit:
+```
+http://mitm.it
+```
+not:
+```
+https://mitm.it
+```
+The certificate setup page is served over HTTP.
