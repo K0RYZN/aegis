@@ -126,35 +126,6 @@ If both pages load correctly, the proxy is functioning properly.
 
 ---
 
-## Project Structure
-
-```text
-mothman/
-├── Main.py
-├── Blacklister.py
-├── Blacklist.py
-├── logo.py
-├── requirements.txt
-├── Dockerfile
-└── README.md
-```
-
----
-
-## Technical Notes
-
-Mothman runs on the official `mitmproxy/mitmproxy` Docker image.
-
-The proxy uses:
-
-```text
---set block_global=false
-```
-
-to prevent mitmproxy from rejecting Docker-networked client connections in certain bridged networking environments.
-
----
-
 ## Disclaimer
 
 Mothman is intended for local traffic inspection, filtering, and educational security research.
