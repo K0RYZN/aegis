@@ -134,6 +134,12 @@ If both pages load correctly, the proxy is functioning properly.
 
 ---
 
+## Limitations
+
+Mothman currently performs domain-based filtering only. It does not yet fully parse EasyList/uBlock Origin filter syntax, cosmetic filters, request resource types, or advanced allow/exception rules. It is intended as a local learning and traffic-filtering project, not a replacement for a mature browser ad blocker.
+
+---
+
 ## Disclaimer
 
 Mothman is intended for local traffic inspection, filtering, and educational security research.
