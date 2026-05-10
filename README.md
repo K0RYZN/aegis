@@ -1,7 +1,6 @@
 # Mothman
 
-Mothman is a intercepting forward proxy that uses MITMPROXY as its engine
-
+Mothman is a Dockerized HTTP/HTTPS filtering proxy built on mitmproxy. It inspects browser traffic and blocks known advertising, telemetry, and tracking domains using a modular Python addon system.
 ## What It Does
 
 Mothman acts as an HTTP/HTTPS intercepting proxy.
