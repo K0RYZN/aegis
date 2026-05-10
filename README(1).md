@@ -1,33 +1,77 @@
 # Mothman
 
-Mothman is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
+Mothman is a Dockerized HTTP/HTTPS filtering proxy built on top of [mitmproxy](https://mitmproxy.org/).
 
-It intercepts browser traffic and blocks known tracker, telemetry, and advertising domains using a modular Python addon system.
+It intercepts browser traffic and blocks known advertising, telemetry, and tracking domains using a modular Python addon system.
+
+The project was built as a hands-on networking and security project focused on:
+
+* HTTP/HTTPS interception
+* Dockerized proxy deployment
+* TLS certificate handling
+* Domain filtering logic
+* mitmproxy addon development
+* Browser proxy configuration
+* Traffic inspection and filtering
 
 ---
 
-# Features
+## Features
 
-- HTTP/HTTPS interception using mitmproxy
-- Tracker and ad-provider domain blocking
-- Dockerized deployment
-- Modular addon architecture
-- Persistent HTTPS certificate support
-- Local browser traffic inspection and filtering
+* HTTP and HTTPS proxy support
+* Dockerized deployment
+* Modular mitmproxy addon system
+* Domain-based tracker and ad blocking
+* Persistent HTTPS certificate support
+* Lightweight and locally hosted
 
 ---
 
-# Requirements
+## Current Addons
+
+### Loader
+
+Displays startup and shutdown status messages when the proxy starts.
+
+### Blacklister
+
+Blocks requests matching domains listed in `Blacklist.py`.
+
+Current filtering targets include:
+
+* Advertising networks
+* Telemetry providers
+* Tracking services
+* Analytics domains
+
+---
+
+## Project Structure
+
+```text
+mothman/
+├── Main.py
+├── Blacklister.py
+├── Blacklist.py
+├── logo.py
+├── requirements.txt
+├── Dockerfile
+└── README.md
+```
+
+---
+
+## Requirements
 
 You need:
 
-- Docker
-- Firefox (recommended) or another browser with manual proxy support
-- Git
+* Docker
+* Firefox (or another browser with manual proxy support)
+* Git
 
 ---
 
-# Installation
+## Installation
 
 Clone the repository:
 
@@ -44,7 +88,7 @@ docker build -t mothman .
 
 ---
 
-# Running Mothman
+## Running Mothman
 
 Start the proxy:
 
@@ -55,11 +99,13 @@ docker run --rm -it \
   mothman
 ```
 
-Mothman will now run locally on port `8080`.
+This starts Mothman on port `8080`.
+
+The `mitmproxy-certs` Docker volume preserves the mitmproxy certificate authority between runs. Without this volume, Docker may generate a new CA certificate every time the container starts, which can break HTTPS trust in the browser.
 
 ---
 
-# Browser Proxy Setup
+## Browser Proxy Configuration
 
 In Firefox:
 
@@ -77,159 +123,106 @@ HTTPS Proxy: 127.0.0.1
 Port: 8080
 ```
 
-Leave SOCKS proxy empty unless you intentionally need it.
+Leave SOCKS blank unless you intentionally plan to chain another proxy.
 
 ---
 
-# HTTPS Certificate Setup
+## HTTPS Setup
 
-Mothman uses mitmproxy to intercept HTTPS traffic.
-
-To enable HTTPS support:
+To enable HTTPS interception and filtering:
 
 1. Start Mothman
-2. Open your browser
-3. Visit:
+2. Open:
 
 ```text
 http://mitm.it
 ```
 
-IMPORTANT:
+3. Download the certificate for Firefox
+4. Follow the browser instructions provided by mitmproxy
+5. Restart Firefox
 
-```text
-Use HTTP, not HTTPS.
-```
-
-4. Download the certificate for your browser
-5. Follow the browser instructions shown on the page
-6. Restart your browser
-
-After this, HTTPS traffic should work correctly.
+Once the certificate is trusted, HTTPS traffic can be intercepted and filtered correctly.
 
 ---
 
-# Why the Docker Volume Matters
-
-This command is important:
-
-```bash
--v mitmproxy-certs:/home/mitmproxy/.mitmproxy
-```
-
-Mitmproxy generates its own Certificate Authority (CA).
-
-Without the Docker volume:
-
-- the container stops
-- the certificate disappears
-- a new certificate gets generated next run
-- HTTPS trust breaks in your browser
-
-The volume keeps the certificate persistent between runs.
-
----
-
-# Important Docker Networking Fix
+## Why `block_global=false` Is Used
 
 Mothman runs mitmproxy inside Docker.
 
-Some Docker networking setups make browser traffic appear as a non-local connection.
+In some Docker networking environments, browser traffic may appear to come from a non-local IP address. Mitmproxy blocks these connections by default using the `block_global` security option.
 
-Without this option:
+Mothman disables this behavior with:
 
 ```text
 --set block_global=false
 ```
 
-mitmproxy may reject the connection with:
-
-```text
-Client connection killed by block_global option.
-```
-
-Mothman already includes this fix in the Dockerfile.
+This allows local Docker networking to function correctly during development and testing.
 
 ---
 
-# Project Structure
+## Example Console Output
 
 ```text
-mothman/
-├── Main.py
-├── Blacklister.py
-├── Blacklist.py
-├── logo.py
-├── requirements.txt
-├── Dockerfile
-└── README.md
+THE MOTHMAN is ACTIVE
+
+BLOCKED HOST: google-analytics.com
+URL: https://google-analytics.com/g/collect
+
+BLOCKED HOST: doubleclick.net
+URL: https://doubleclick.net/pagead/id
 ```
 
 ---
 
-# Current Addons
+## Dockerfile
 
-## Loader
+```dockerfile
+FROM mitmproxy/mitmproxy:latest
 
-Displays startup and shutdown messages.
+WORKDIR /addons
 
-## Blacklister
+COPY requirements.txt /addons/requirements.txt
+RUN pip install --no-cache-dir -r /addons/requirements.txt
 
-Blocks requests matching domains inside `Blacklist.py`.
+COPY . /addons
 
----
+EXPOSE 8080
 
-# Example Blocked Response
-
-```text
-BLOCKED BY THE MOTHMAN
+CMD ["mitmdump", \
+     "--listen-host", "0.0.0.0", \
+     "--listen-port", "8080", \
+     "--mode", "regular", \
+     "--set", "block_global=false", \
+     "-s", "/addons/Main.py"]
 ```
 
 ---
 
-# Troubleshooting
+## Troubleshooting
 
-## `http://mitm.it` does not load
+### HTTPS Sites Fail To Load
 
 Make sure:
 
-- the container is running
-- your browser proxy settings are correct
-- you are visiting:
+* The mitmproxy certificate is installed correctly
+* Firefox is configured to use the proxy
+* The Docker cert volume is mounted properly
+
+If needed, remove old mitmproxy certificates from Firefox and reinstall the current one from:
 
 ```text
 http://mitm.it
 ```
 
-and NOT:
-
-```text
-https://mitm.it
-```
-
 ---
 
-## HTTPS websites fail to load
+### `Client connection killed by block_global option`
 
-Delete old mitmproxy certificates from your browser and reinstall the current one from:
+This occurs when mitmproxy believes the client connection is coming from a global/non-local address.
 
-```text
-http://mitm.it
-```
-
-Also make sure you are running the container with:
-
-```bash
--v mitmproxy-certs:/home/mitmproxy/.mitmproxy
-```
-
----
-
-## `Client connection killed by block_global option`
-
-This means mitmproxy rejected the connection because Docker networking made it appear non-local.
-
-Mothman fixes this using:
+Mothman fixes this by launching mitmproxy with:
 
 ```text
 --set block_global=false
@@ -237,13 +230,18 @@ Mothman fixes this using:
 
 ---
 
-# Notes
+### `ModuleNotFoundError`
 
-Mothman is intended for:
+Rebuild the Docker image:
 
-- local traffic filtering
-- HTTP/HTTPS inspection
-- learning mitmproxy addon development
-- educational security research
+```bash
+docker build -t mothman .
+```
 
-Only intercept traffic you own or have permission to inspect.
+---
+
+## Disclaimer
+
+Mothman is intended for local traffic inspection, filtering, and educational security research.
+
+Only intercept traffic you own or are authorized to inspect.
