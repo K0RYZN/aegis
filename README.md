@@ -23,7 +23,7 @@ It intercepts browser traffic and blocks known advertising, telemetry, and track
 |---|---|
 | `Loader` | Displays startup and shutdown messages |
 | `Blacklister` | Blocks requests matching domains defined in `Blacklist.py` |
-
+| `Stats` | Tracks uptime, total requests, blocked requests, allowed requests, block rate, and top blocked domains |
 ---
 
 ## Why I Built This
@@ -48,6 +48,29 @@ BLOCKED HOST: analytics.tiktok.com | URL: https://analytics.tiktok.com/i18n/pixe
 Blocked requests receive a local 403 Forbidden response:
 ```
 BLOCKED BY THE MOTHMAN
+```
+---
+
+## Session Stats
+
+When Mothman shuts down, it prints a session summary showing what happened while the proxy was running:
+
+```
+THE MOTHMAN is INACTIVE
+
+MOTHMAN STATS
+Uptime: 00:22:41
+Total Requests Seen: 842
+Blocked Requests: 76
+Allowed Requests: 766
+Block Rate: 9.03%
+
+Top Blocked Domains:
+  google-analytics.com - 18
+  stats.g.doubleclick.net - 15
+  pagead2.googlesyndication.com - 11
+  analytics.tiktok.com - 7
+  bat.bing.com - 5
 ```
 ---
 
