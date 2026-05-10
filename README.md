@@ -26,6 +26,14 @@ It intercepts browser traffic and blocks known advertising, telemetry, and track
 
 ---
 
+## Why I Built This
+
+Mothman started as a personal experiment in HTTPS interception, proxy-based traffic filtering, and tracker blocking. The goal was to understand how browser traffic moves through a local proxy, how certificate trust affects HTTPS inspection, and how domain-based filtering can be implemented with mitmproxy addons.
+
+This project helped me practice Docker deployment, mitmproxy scripting, request inspection, blacklist design, and privacy-focused network tooling.
+
+---
+
 ## Requirements
 
 - Docker
