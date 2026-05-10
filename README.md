@@ -34,6 +34,23 @@ This project helped me practice Docker deployment, mitmproxy scripting, request 
 
 ---
 
+## Demo Output
+
+When Mothman blocks a tracker or ad request, it logs the blocked host and full URL:
+```
+THE MOTHMAN is ACTIVE
+
+BLOCKED HOST: google-analytics.com | URL: https://www.google-analytics.com/g/collect
+BLOCKED HOST: stats.g.doubleclick.net | URL: https://stats.g.doubleclick.net/j/collect
+BLOCKED HOST: pagead2.googlesyndication.com | URL: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
+BLOCKED HOST: analytics.tiktok.com | URL: https://analytics.tiktok.com/i18n/pixel/events.js
+```
+Blocked requests receive a local 403 Forbidden response:
+```
+BLOCKED BY THE MOTHMAN
+```
+---
+
 ## Requirements
 
 - Docker
