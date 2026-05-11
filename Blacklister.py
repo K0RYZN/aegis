@@ -28,7 +28,7 @@ class Blacklister:
 
             flow.response = http.Response.make(
                 403,
-                b"\nBLOCKED BY THE MOTHMAN\n",
+                b"\nBLOCKED BY AEGIS\n",
                 {"Content-Type": "text/plain"}
             )
 
