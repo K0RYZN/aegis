@@ -1,6 +1,6 @@
 from logo import logo
 from Blacklister import Blacklister
-from Stats import MothmanStats
+from Stats import AEGISStats
 from colorama import Fore, Style
 
 stats = AEGISStats()
