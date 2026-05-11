@@ -57,7 +57,7 @@ BLOCKED BY AEGIS
 
 When AEGIS shuts down, it prints a session summary showing what happened while the proxy was running:
 
-<img width="1029" height="325" alt="Stats" src="https://github.com/user-attachments/assets/8404e175-eb96-4c28-a5f4-57a479811e76" />
+<img width="689" height="270" alt="stats" src="https://github.com/user-attachments/assets/6e214c7c-44f8-4cb2-aad1-353b5104ef86" />
 
 ---
 
