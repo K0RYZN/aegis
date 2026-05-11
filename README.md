@@ -74,14 +74,14 @@ When AEGIS shuts down, it prints a session summary showing what happened while t
 Clone the repository:
 
 ```bash
-git clone https://github.com/M0usetrap777/AEGIS.git
-cd AEGIS
+git clone https://github.com/M0usetrap777/aegis.git
+cd aegis
 ```
 
 Build the Docker image:
 
 ```bash
-docker build -t AEGIS .
+docker build -t aegis .
 ```
 
 ---
@@ -94,7 +94,7 @@ Start the proxy:
 docker run --rm -it \
   -p 8080:8080 \
   -v mitmproxy-certs:/home/mitmproxy/.mitmproxy \
-  AEGIS
+  aegis
 ```
 
 The `mitmproxy-certs` volume preserves the generated certificate authority between runs. This prevents HTTPS trust issues caused by certificate regeneration.
@@ -109,13 +109,13 @@ Configure your browser to use the proxy manually.
 
 Go to:
 
-```text
+```
 Settings → Network Settings → Manual proxy configuration
 ```
 
 Set:
 
-```text
+```
 HTTP Proxy: 127.0.0.1
 Port: 8080
 
@@ -153,7 +153,7 @@ http://example.com
 
 Test HTTPS traffic:
 
-```text
+```
 https://example.com
 ```
 
