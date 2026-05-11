@@ -1,4 +1,4 @@
-# Mothman currently supports domain-based blocking only.
+# AEGIS currently supports domain-based blocking only.
 # Do not paste raw EasyList/uBlock rules here.
 # Unsupported examples:
 #   ||doubleclick.net^
@@ -189,9 +189,9 @@ OTHER_TELEMETRY_AND_ADS = [
     "eq97f.publishers.tremorhub.com",
 ]
 
-# Optional: domains imported from public privacy/tracker lists.
+# domains imported from public privacy/tracker lists.
 # These are known/likely tracker-style domains, but the names are less obvious.
-# Keeping them separate makes the list easier to audit later.
+# Keeping them separate makes the list easier to audit
 PRIVACY_LIST_IMPORTED = [
     "abandonedclover.com",
     "abruptroad.com",
