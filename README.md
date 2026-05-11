@@ -1,7 +1,7 @@
-# Mothman
+# AEGIS
 <img width="555" height="651" alt="Logo" src="https://github.com/user-attachments/assets/60e975ca-3ed8-45c9-8889-d16f1ca79c3f" />
 
-Mothman is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
+AEGIS is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
 
 It intercepts browser traffic and blocks known advertising, telemetry, and tracking domains using a modular Python addon system.
 
@@ -29,7 +29,7 @@ It intercepts browser traffic and blocks known advertising, telemetry, and track
 
 ## Why I Built This
 
-Mothman started as a personal experiment in HTTPS interception, proxy-based traffic filtering, and tracker blocking. The goal was to understand how browser traffic moves through a local proxy, how certificate trust affects HTTPS inspection, and how domain-based filtering can be implemented with mitmproxy addons.
+AEGIS started as a personal experiment in HTTPS interception, proxy-based traffic filtering, and tracker blocking. The goal was to understand how browser traffic moves through a local proxy, how certificate trust affects HTTPS inspection, and how domain-based filtering can be implemented with mitmproxy addons.
 
 This project helped me practice Docker deployment, mitmproxy scripting, request inspection, blacklist design, and privacy-focused network tooling.
 
@@ -37,9 +37,9 @@ This project helped me practice Docker deployment, mitmproxy scripting, request 
 
 ## Demo Output
 
-When Mothman blocks a tracker or ad request, it logs the blocked host and full URL:
+When AEGIS blocks a tracker or ad request, it logs the blocked host and full URL:
 ```
-THE MOTHMAN is ACTIVE
+AEGIS is ACTIVE
 
 BLOCKED HOST: google-analytics.com | URL: https://www.google-analytics.com/g/collect
 BLOCKED HOST: stats.g.doubleclick.net | URL: https://stats.g.doubleclick.net/j/collect
@@ -48,13 +48,13 @@ BLOCKED HOST: analytics.tiktok.com | URL: https://analytics.tiktok.com/i18n/pixe
 ```
 Blocked requests receive a local 403 Forbidden response:
 ```
-BLOCKED BY THE MOTHMAN
+BLOCKED BY AEGIS
 ```
 ---
 
 ## Session Stats
 
-When Mothman shuts down, it prints a session summary showing what happened while the proxy was running:
+When AEGIS shuts down, it prints a session summary showing what happened while the proxy was running:
 
 <img width="1029" height="325" alt="Stats" src="https://github.com/user-attachments/assets/8404e175-eb96-4c28-a5f4-57a479811e76" />
 
@@ -73,19 +73,19 @@ When Mothman shuts down, it prints a session summary showing what happened while
 Clone the repository:
 
 ```bash
-git clone https://github.com/M0usetrap777/mothman.git
-cd mothman
+git clone https://github.com/M0usetrap777/AEGIS.git
+cd AEGIS
 ```
 
 Build the Docker image:
 
 ```bash
-docker build -t mothman .
+docker build -t AEGIS .
 ```
 
 ---
 
-## Running Mothman
+## Running AEGIS
 
 Start the proxy:
 
@@ -93,7 +93,7 @@ Start the proxy:
 docker run --rm -it \
   -p 8080:8080 \
   -v mitmproxy-certs:/home/mitmproxy/.mitmproxy \
-  mothman
+  AEGIS
 ```
 
 The `mitmproxy-certs` volume preserves the generated certificate authority between runs. This prevents HTTPS trust issues caused by certificate regeneration.
@@ -128,11 +128,11 @@ Leave SOCKS proxy settings empty unless specifically required.
 
 ## HTTPS Certificate Installation
 
-To enable HTTPS interception, Mothman’s certificate authority must be trusted by the browser.
+To enable HTTPS interception, AEGIS’s certificate authority must be trusted by the browser.
 
 While the proxy is running, visit:
 
-```text
+```
 http://mitm.it
 ```
 
@@ -146,7 +146,7 @@ After importing the certificate, restart the browser.
 
 Test standard HTTP traffic:
 
-```text
+```
 http://example.com
 ```
 
@@ -162,12 +162,12 @@ If both pages load correctly, the proxy is functioning properly.
 
 ## Limitations
 
-Mothman currently performs domain-based filtering only. It does not yet fully parse EasyList/uBlock Origin filter syntax, cosmetic filters, request resource types, or advanced allow/exception rules. It is intended as a local learning and traffic-filtering project, not a replacement for a mature browser ad blocker.
+AEGIS currently performs domain-based filtering only. It does not yet fully parse EasyList/uBlock Origin filter syntax, cosmetic filters, request resource types, or advanced allow/exception rules. It is intended as a local learning and traffic-filtering project, not a replacement for a mature browser ad blocker.
 
 ---
 
 ## Disclaimer
 
-Mothman is intended for local traffic inspection, filtering, and educational security research.
+AEGIS is intended for local traffic inspection, filtering, and educational security research.
 
 Only intercept or inspect traffic you own or are authorized to analyze.
