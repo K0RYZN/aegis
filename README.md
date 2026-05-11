@@ -1,5 +1,6 @@
 # AEGIS
-<img width="555" height="651" alt="Logo" src="https://github.com/user-attachments/assets/60e975ca-3ed8-45c9-8889-d16f1ca79c3f" />
+<img width="393" height="383" alt="logo" src="https://github.com/user-attachments/assets/ac813a39-cd19-4a04-8235-63ff05999e0a" />
+
 
 AEGIS is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
 
