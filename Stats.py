@@ -3,7 +3,7 @@ from collections import Counter
 from colorama import Fore, Style
 
 
-class MothmanStats:
+class AEGISStats:
     def __init__(self):
         self.started_at = time.time()
         self.total_requests = 0
@@ -39,7 +39,7 @@ class MothmanStats:
         return self.blocked_domains.most_common(limit)
 
     def print_summary(self):
-        print(f"\n{Style.BRIGHT}{Fore.MAGENTA}MOTHMAN STATS{Style.RESET_ALL}")
+        print(f"\n{Style.BRIGHT}{Fore.MAGENTA}AEGIS STATS{Style.RESET_ALL}")
         print(f"{Fore.CYAN}Uptime:{Fore.RESET} {self.format_uptime()}")
         print(f"{Fore.CYAN}Total Requests Seen:{Fore.RESET} {self.total_requests}")
         print(f"{Fore.RED}Blocked Requests:{Fore.RESET} {self.blocked_requests}")
