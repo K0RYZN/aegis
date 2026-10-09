@@ -2,7 +2,7 @@
 <img width="393" height="383" alt="logo" src="https://github.com/user-attachments/assets/ac813a39-cd19-4a04-8235-63ff05999e0a" />
 
 
-AEGIS is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy.
+AEGIS is a Dockerized HTTP/HTTPS filtering proxy built on top of mitmproxy. A project hand-made by me
 
 It intercepts browser traffic and blocks known advertising, telemetry, and tracking domains using a modular Python addon system.
 
